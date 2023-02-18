@@ -8,5 +8,5 @@ Even though I'm happy with what I made in this 2 days, I feel like I could reall
  I did my best with the time I had, and I hope it fulfills your expectations. :)
  
  To run just:
- npm install
- npm run dev
+ `npm install
+ npm run dev`
