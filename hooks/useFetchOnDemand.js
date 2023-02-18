@@ -50,7 +50,6 @@ const useFetch = (url = "http://localhost:3000", callback = undefined) => {
         optsAndParams;
         setData(res.data);
       } catch (err) {
-        console.log("ERROR:", err);
         const data = err.response ? err.response.data : "Server error";
         setData(null);
         setError(data.message);

@@ -34,7 +34,6 @@ const History = () => {
     }
   }, [confirmData?.id]);
   const confirmDiagnosticHandler = (e) => {
-    console.log(e.target.id);
     confirmDiagnostic({
       method: "PUT",
       data: {
@@ -62,7 +61,6 @@ const History = () => {
             </thead>
             <tbody>
               {diagnostics.parsedResponse.map((item) => {
-                console.log();
                 return (
                   <tr
                     key={item._id}

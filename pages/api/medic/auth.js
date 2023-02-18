@@ -17,7 +17,6 @@ export default async function auth(req, res) {
       return res.status(405).send({ success: false });
     }
   } catch (e) {
-    console.log(e);
     return res.status(500).send({ success: false, message: e.message });
   }
 }

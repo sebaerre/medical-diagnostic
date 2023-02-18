@@ -7,7 +7,6 @@ const Logout = () => {
   const [, , removeCookie] = useCookies(["user"]);
 
   const handleLogout = () => {
-    console.log("test");
     removeCookie("user", { path: "/" });
     Router.push("/login");
   };

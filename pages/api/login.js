@@ -4,7 +4,6 @@ export default async function login(req, res) {
   try {
     if (req.method === "POST") {
       const response = await loginUser({ ...req.body });
-      console.log(response);
       if (response.result) {
         return res
           .status(200)
