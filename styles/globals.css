@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap");
+
+@layer components {
+  #__next {
+    @apply h-full;
+  }
+  html,
+  body {
+    @apply h-full;
+  }
+}
+
+@layer utilities {
+  a:hover {
+    color: #1b264f;
+  }
+  a {
+    font-weight: bold;
+    color: #5468ff;
+  }
+  .navbar a {
+    color: white;
+  }
+  .navbar a:hover {
+    color: #1b264f;
+  }
+  .multiple::-webkit-scrollbar {
+    width: 10px;
+    position: relative;
+    height: 60%;
+  }
+
+  .multiple::-webkit-scrollbar-track {
+    margin: 10px 0px;
+    background: #5468ff;
+    border-radius: 100px;
+  }
+
+  .multiple::-webkit-scrollbar-thumb {
+    background-color: #1b264f;
+    border-radius: 100px;
+  }
+}
