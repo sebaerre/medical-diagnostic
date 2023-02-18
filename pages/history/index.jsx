@@ -75,7 +75,7 @@ const History = () => {
                     </td>
                     <td className="px-6 py-4">{item.date}</td>
                     <td className="px-6 py-4">
-                      {item.selectedSymptoms.map((i) => i)}
+                      {item.selectedSymptoms.map((i) => i + " ")}
                     </td>
                     <td className="px-6 py-4">
                       <Form.Button
