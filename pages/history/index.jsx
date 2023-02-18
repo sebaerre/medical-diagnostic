@@ -19,18 +19,26 @@ const History = () => {
   const [cookies] = useCookies(["user"]);
 
   useEffect(() => {
-    getDiagnostics({
-      method: "GET",
-      data: cookies.user?.email,
-    });
+    getDiagnostics(
+      {
+        method: "GET",
+      },
+      new URLSearchParams({
+        email: cookies.user?.email,
+      })
+    );
   }, []);
 
   useEffect(() => {
     if (confirmData?.success) {
-      getDiagnostics({
-        method: "GET",
-        data: cookies.user?.email,
-      });
+      getDiagnostics(
+        {
+          method: "GET",
+        },
+        new URLSearchParams({
+          email: cookies.user?.email,
+        })
+      );
     }
   }, [confirmData?.id]);
   const confirmDiagnosticHandler = (e) => {
@@ -69,11 +77,15 @@ const History = () => {
                     }`}
                   >
                     <td className="px-6 py-4">
-                      {item.diagnostic.map((i) => i.Issue.Name)}
+                      {item.diagnostic.map(
+                        (i, idx) =>
+                          i.Issue.Name +
+                          (idx === item.diagnostic.length - 1 ? "" : ", ")
+                      )}
                     </td>
                     <td className="px-6 py-4">{item.date}</td>
                     <td className="px-6 py-4">
-                      {item.selectedSymptoms.map((i) => i + " ")}
+                      {item.selectedSymptoms.join(", ")}
                     </td>
                     <td className="px-6 py-4">
                       <Form.Button

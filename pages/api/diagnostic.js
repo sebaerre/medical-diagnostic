@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   } else if (req.method === "GET") {
     try {
       if (req.method === "GET") {
-        const response = await getDiagnostics(req.body);
+        const response = await getDiagnostics(req.query.email);
         let parsedResponse = [];
         response.map((item) => {
           parsedResponse.push({

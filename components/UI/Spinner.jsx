@@ -21,4 +21,4 @@ const Spinner = ({ className }) => (
   </div>
 );
 
-export default Spinner;
+export default React.memo(Spinner);

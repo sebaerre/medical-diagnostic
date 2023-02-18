@@ -44,7 +44,8 @@ const useFetch = (url = "http://localhost:3000", callback = undefined) => {
       setError(null);
       try {
         const res = await axios(
-          url + optsAndParams.queryParams,
+          url +
+            (optsAndParams.queryParams ? `?${optsAndParams.queryParams}` : ""),
           optsAndParams.options
         );
         optsAndParams;

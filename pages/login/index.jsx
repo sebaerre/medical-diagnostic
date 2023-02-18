@@ -46,6 +46,7 @@ export default function Login() {
 
   useEffect(() => {
     if (data?.success) {
+      //if login is successfull, we set the user cookie
       setCookie("user", JSON.stringify(data?.existingUser), {
         path: "/",
         maxAge: 7200, // Expires after 2hrs
@@ -56,10 +57,11 @@ export default function Login() {
   }, [data]);
 
   useEffect(() => {
-    if (error) setShowNotif(true);
-  }, [error]);
+    if (data?.success || error) setShowNotif(true);
+  }, [error, data?.success]);
 
   const login = (e) => {
+    setFormErrors({});
     e.preventDefault();
     const errors = validateForm();
     if (!Object.keys(errors).length) {

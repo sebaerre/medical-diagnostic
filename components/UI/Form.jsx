@@ -62,7 +62,7 @@ export const Button = ({ className, onClick, ...rest }) => {
   );
 };
 
-Form.Button = Button;
-Form.Input = Input;
+Form.Button = React.memo(Button);
+Form.Input = React.memo(Input);
 
 export default Form;

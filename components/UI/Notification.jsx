@@ -24,4 +24,4 @@ const Notification = ({ setShowNotif, show, type, message }) => {
   ) : null;
 };
 
-export default Notification;
+export default React.memo(Notification);

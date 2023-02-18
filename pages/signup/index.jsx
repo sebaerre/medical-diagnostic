@@ -44,12 +44,15 @@ const Signup = () => {
   };
 
   const registerUser = async (e) => {
+    setFormErrors({});
     e.preventDefault();
+    //form validation
     const errors = validateForm();
     if (!Object.keys(errors).length) {
+      //if no errors, we try to signup the user
       doApiCall({
         method: "POST",
-        data: signUpForm,
+        data: { ...signUpForm, gender: signUpForm.gender.Name },
       });
     } else {
       setFormErrors(errors);
@@ -60,7 +63,7 @@ const Signup = () => {
     if (data?.success || error) {
       setShowNotif(true);
     }
-  }, [data, error]);
+  }, [data?.success, error]);
 
   return (
     <div className="font-roboto h-full w-full bg-no-repeat bg-cover bg-fixed bg-login">

@@ -14,7 +14,7 @@ const Diagnostic = ({ data }) => {
   const [
     getSymptoms,
     { loading: loadingSymptoms, data: symptoms, error: errorSymptoms },
-  ] = useFetchOnDemand(BASE_URL_API + "/symptoms?");
+  ] = useFetchOnDemand(BASE_URL_API + "/symptoms");
 
   const submitNewDiagnosticToHistory = () => {
     const namedSymptoms = [];
@@ -44,7 +44,7 @@ const Diagnostic = ({ data }) => {
       error: errorDiagnostic,
     },
   ] = useFetchOnDemand(
-    BASE_URL_API + "/diagnosis?",
+    BASE_URL_API + "/diagnosis",
     submitNewDiagnosticToHistory
   );
 
@@ -113,7 +113,7 @@ const Diagnostic = ({ data }) => {
     setSelectedSymptoms(newSelectedSymptoms);
   };
 
-  const diagnostic = (
+  const diagnosticCard = (
     <Card className="min-w-fit justify-center items-center">
       {loadingDiagnostic ? (
         <Spinner />
@@ -151,46 +151,50 @@ const Diagnostic = ({ data }) => {
       )}
     </Card>
   );
+
+  const symptomsCard = (
+    <Card className="min-w-fit">
+      {loadingSymptoms && !symptoms ? (
+        <Spinner />
+      ) : (
+        symptoms && (
+          <>
+            <h1 className="text-lg font-semibold">Select your symptoms</h1>
+            <Form className="h-full" submit={submitSymptoms}>
+              <Form.Input
+                className="w-full h-52"
+                type="select"
+                multiple
+                onChange={handleChange}
+                id="symptoms"
+                name="symptoms"
+                options={symptoms}
+              />
+              {loadingDiagnostic ? (
+                <Spinner className="flex justify-center items-center" />
+              ) : (
+                <Form.Button
+                  className="flex disabled:opacity-90 self-center rounded-xl h-8 w-1/2 items-center justify-center"
+                  type="submit"
+                  id="getdiagnostic"
+                  name="getdiagnostic"
+                >
+                  Get Diagnostic
+                </Form.Button>
+              )}
+            </Form>
+          </>
+        )
+      )}
+    </Card>
+  );
   return (
     <Container>
-      <Card className="min-w-fit">
-        {loadingSymptoms && !symptoms ? (
-          <Spinner />
-        ) : (
-          symptoms && (
-            <>
-              <h1 className="text-lg font-semibold">Select your symptoms</h1>
-              <Form className="h-full" submit={submitSymptoms}>
-                <Form.Input
-                  className="w-full h-52"
-                  type="select"
-                  multiple
-                  onChange={handleChange}
-                  id="symptoms"
-                  name="symptoms"
-                  options={symptoms}
-                />
-                {loadingDiagnostic ? (
-                  <Spinner className="flex justify-center items-center" />
-                ) : (
-                  <Form.Button
-                    className="flex disabled:opacity-90 self-center rounded-xl h-8 w-1/2 items-center justify-center"
-                    type="submit"
-                    id="getdiagnostic"
-                    name="getdiagnostic"
-                  >
-                    Get Diagnostic
-                  </Form.Button>
-                )}
-              </Form>
-            </>
-          )
-        )}
-        {errorSymptoms && (
-          <h1 className="text-lg font-semibold">Something went wrong</h1>
-        )}
-      </Card>
-      {diagnostic}
+      {symptomsCard}
+      {errorSymptoms && (
+        <h1 className="text-lg font-semibold">Something went wrong</h1>
+      )}
+      {diagnosticCard}
       {errorDiagnostic && (
         <h1 className="text-lg font-semibold">Something went wrong</h1>
       )}

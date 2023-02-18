@@ -12,4 +12,12 @@ const Navbar = ({ children }) => {
   } else return null;
 };
 
-export default Navbar;
+export default React.memo(Navbar, (prevProps, nextProps) => {
+  if (
+    React.Children.count(prevProps.children) ===
+    React.Children.count(nextProps.children)
+  ) {
+    return true; // props are equal
+  }
+  return false; // props are not equal -> update the component
+});
