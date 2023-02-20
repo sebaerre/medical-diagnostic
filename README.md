@@ -13,8 +13,6 @@ Some additional features I implemented were:
 -Password encryption on the db
 -Logout
 -Route guarding and redirection (for /login, /home, /diagnostic and /history)
-
- I did my best with the time I had, and I hope it fulfills your expectations. :)
  
  To run just:
  `npm install &&
